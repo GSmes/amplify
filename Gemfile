@@ -28,9 +28,10 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'pry', :require => 'pry'
 gem 'figaro'
 gem 'faraday'
-gem 'pry', :require => 'pry'
+gem 'omniauth-spotify'
 
 group :development, :test do
   gem 'byebug', platform: :mri
