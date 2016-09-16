@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'pry', :require => 'pry'
 gem 'figaro'
 gem 'faraday'
+gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'omniauth-spotify'
 
 group :development, :test do

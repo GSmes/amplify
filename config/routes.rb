@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  root to: "home#index"
+  root "home#index"
+
+  get '/auth/spotify', as: :login
+  get '/auth/spotify/callback', to: 'sessions#create'
 end
