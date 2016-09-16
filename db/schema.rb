@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20160916040441) do
 
   create_table "users", force: :cascade do |t|
     t.string  "name"
+    t.string  "email"
     t.text    "access_token"
     t.text    "refresh_token"
     t.integer "token_expiry"
