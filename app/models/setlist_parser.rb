@@ -6,8 +6,8 @@ class SetlistParser
   def songs_array
     retrieve_set.each_with_object([]) do |setlist_entry, songs|
       # binding.pry
-      songs.concat(setlist_entry[:song])
-    end
+      songs.concat([setlist_entry[:song]])
+    end.flatten
   end
 
   private

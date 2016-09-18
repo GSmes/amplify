@@ -3,11 +3,12 @@ class SetlistService
     @connection = Faraday.new("http://api.setlist.fm/rest/0.1/")
   end
 
-  def search_by_artist(artist_name)
+  def artist_events(artist_name)
     response = connection.get do |req|
       req.url 'search/setlists.json'
       req.params['artistName'] = artist_name
     end
+    # parse(response)[:setlists][:setlist]
     events_hashes = parse(response)[:setlists][:setlist]
     events_hashes.map do |event_hash|
       Event.new(event_hash).setlist
@@ -30,5 +31,5 @@ class SetlistService
 end
 
 ## run `rails runner app/services/setlist_service.rb` to see response in JSON ##
-SetlistService.new.search_by_artist("Pearl Jam")
+# SetlistService.new.artist_events("Pearl Jam")
 # SetlistService.new.get_event("5bfccf3c")

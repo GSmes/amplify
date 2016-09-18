@@ -1,13 +1,14 @@
 class Event
-  Artist = Struct.new(:name)
-  Song = Struct.new(:title)
+  # Artist = Struct.new(:name)
+  # Song = Struct.new(:title)
 
   def initialize(event_hash)
     @response = event_hash
   end
 
   def artist
-    Artist.new(response[:artist][:@name])
+    response[:artist][:@name]
+    # Artist.new(response[:artist][:@name])
   end
 
   def date
@@ -17,9 +18,12 @@ class Event
   def setlist
     songs = SetlistParser.new(response).songs_array
 
-    all_songs = songs.map do |song|
-      Song.new(song[:@name])
+    songs.map do |song|
+      song[:@name]
     end
+    # all_songs = songs.map do |song|
+    #   Song.new(song[:@name])
+    # end
   end
 
   # def self.service
