@@ -1,3 +1,18 @@
-<% @setlists.each do |setlist| %>
-  <p><%= setlist %></p>
-<% end %>
+<div class="container">
+  <% @setlists.each do |setlist| %>
+    <div class="well col-md-8 col-md-offset-2">
+      <center>
+        <h3><%= setlist.artist %></h3>
+        <h5><strong>Venue: </strong><%= setlist.venue %></h5>
+        <h5><strong>Date: </strong><%= setlist.date %></h5>
+      </center>
+      <% unless setlist.songs.blank? %>
+        <div class="well col-md-8 col-md-offset-2">
+          <p><% setlist.songs.each_with_index do |song, index| %>
+            <strong><%= index + 1 %>.</strong> <%= song %><br>
+          <% end %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

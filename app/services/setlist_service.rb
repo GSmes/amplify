@@ -8,18 +8,11 @@ class SetlistService
       req.url 'search/setlists.json'
       req.params['artistName'] = artist_name
     end
-    # parse(response)[:setlists][:setlist]
     events_hashes = parse(response)[:setlists][:setlist]
     events_hashes.map do |event_hash|
-      Event.new(event_hash).setlist
+      Setlist.new(event_hash)
     end
   end
-
-  # def get_event(setlist_id)
-  #   response = connection.get("setlist/#{setlist_id}.json")
-  #   event_hash = parse(response)[:setlist]
-  #   Event.new(event_hash)
-  # end
 
   private
 
