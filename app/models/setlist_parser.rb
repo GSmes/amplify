@@ -4,10 +4,18 @@ class SetlistParser
   end
 
   def songs_array
-    retrieve_set.each_with_object([]) do |setlist_entry, songs|
+    sa = []
+    retrieve_set.each do |setlist_entry, songs|
+      sa << setlist_entry[:song] unless setlist_entry.class == Symbol
+      sa << songs unless songs.blank?
       # binding.pry
-      songs.concat(setlist_entry[:song])
+      # songs.concat([setlist_entry[:song]])
     end
+    return sa.flatten
+    # retrieve_set.each_with_object([]) do |setlist_entry, songs|
+    #   # binding.pry
+    #   songs.concat([setlist_entry[:song]])
+    # end.flatten
   end
 
   private

@@ -1,14 +1,22 @@
 <center>
   <h1>Amplify</h1>
 
-  <h4>
+  <div class="well">
     Amplify automatically generates a Spotify playlist based on a band or artist's previous show(s).
-  </h4>
+  </div>
 
   <% if current_user %>
-    <p>Welcome, <%= current_user.name.capitalize %>!</p>
-    <%= link_to "Log out", logout_path, method: :delete %>
+    <div>
+      <p><strong>Welcome, <%= current_user.name.capitalize %>!</strong></p>
+      <p><strong><%= link_to "Search for a setlist", search_path %></strong></p>
+      <br><br />
+      <p><%= link_to "Log out", logout_path, method: :delete %></p>
+    </div>
   <% else %>
-    <%= link_to "Log in with Spotify", login_path %>
+    <div>
+      <p><%= link_to "Log in with Spotify", login_path %></p>
+    </div>
   <% end %>
+
+
 </center>
