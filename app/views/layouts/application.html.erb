@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Amplify</title>
     <%= csrf_meta_tags %>
 
@@ -9,6 +11,13 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %> alert-dismissible text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= sanitize(value) %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -8,10 +8,7 @@ class SetlistService
       req.url 'search/setlists.json'
       req.params['artistName'] = artist_name
     end
-    events_hashes = parse(response)[:setlists][:setlist]
-    events_hashes.map do |event_hash|
-      Setlist.new(event_hash)
-    end
+    parse(response)[:setlists][:setlist]
   end
 
   private
@@ -22,7 +19,3 @@ class SetlistService
     JSON.parse(response.body, symbolize_names: true)
   end
 end
-
-## run `rails runner app/services/setlist_service.rb` to see response in JSON ##
-# SetlistService.new.artist_events("Pearl Jam")
-# SetlistService.new.get_event("5bfccf3c")
