@@ -4,6 +4,7 @@
       <center>
         <h3><%= setlist.artist %></h3>
         <h5><strong>Venue: </strong><%= setlist.venue %></h5>
+        <h5><strong>Location: </strong><%= setlist.location %></h5>
         <h5><strong>Date: </strong><%= setlist.date %></h5>
       </center>
       <% unless setlist.songs.blank? %>
@@ -12,6 +13,7 @@
             <strong><%= index + 1 %>.</strong> <%= song %><br>
           <% end %></p>
         </div>
+        <%= button_to 'Create Playlist', {:controller => "playlists", :action => "create", :playlist_name => "#{setlist.artist}_#{setlist.date}_#{setlist.venue}"}  %>
       <% end %>
     </div>
   <% end %>

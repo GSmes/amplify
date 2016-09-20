@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   get '/search', to: 'search#index'
   get '/setlists', to: 'setlists#index'
+  post '/playlists', to: 'playlists#create'
 end

@@ -2,30 +2,48 @@ class Setlist
   attr_reader :artist,
               :date,
               :venue,
+              :location,
               :songs
 
   def initialize(event_hash)
     @event_hash = event_hash
-    generate_setlist
+    @artist     = event_hash[:artist][:@name]
+    @date       = Date.parse(event_hash[:@eventDate])
+    @venue      = event_hash[:venue][:@name]
+    @location   = format_location
+    @songs      = get_songs
   end
 
-  def generate_setlist
-    @artist = get_artist
-    @date = get_date
-    @venue = get_venue
-    @songs = get_songs
+  def self.find_all(artist_name)
+    events = service.artist_events(artist_name)
+
+    events.map do |event|
+      Setlist.new(event)
+    end
   end
 
-  def get_artist
-    event_hash[:artist][:@name]
+  def self.service
+    SetlistService.new
   end
 
-  def get_date
-    Date.parse(event_hash[:@eventDate])
+  private
+
+  attr_reader :event_hash
+
+  def format_location
+    "#{city}, #{state}, #{country}"
   end
 
-  def get_venue
-    event_hash[:venue][:@name]
+  def city
+    event_hash[:venue][:city][:@name]
+  end
+
+  def state
+    event_hash[:venue][:city][:@state]
+  end
+
+  def country
+    event_hash[:venue][:city][:country][:@code]
   end
 
   def get_songs
@@ -34,30 +52,5 @@ class Setlist
     songs.map do |song|
       song[:@name]
     end
-  end
-
-  # def self.service
-  #   @@service ||= SetlistService.new
-  # end
-  #
-  # def self.all_by_artist(artist_name)
-  #   events_hashes = service.search_by_artist(artist_name)
-  #   events = events_hashes.map do |event_hash|
-  #     Event.new( event_hash )
-  #   end
-  # end
-  #
-  # def self.find(setlist_id)
-  #   event_hash = service.get_event(setlist_id)
-  #   Event.new( event_hash )
-  # end
-
-  private
-
-  attr_reader :event_hash
-
-  def self.service(artist_name)
-    service ||= SetlistService.new
-    @response = service.artist_events(artist_name)
   end
 end
