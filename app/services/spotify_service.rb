@@ -1,18 +1,16 @@
 class SpotifyService
   def initialize
-    @connection = Faraday.new("https://api.spotify.com/v1/") do |conn|
-      conn.headers["Authorization"] = "Bearer #{current_user.access_token}"
+    @connection = Faraday.new("https://api.spotify.com/v1/")
   end
 
-  def artist_events(artist_name)
-    response = connection.get do |req|
-      req.url 'search/setlists.json'
-      req.params['artistName'] = artist_name
+  def new_playlist(user, playlist_name)
+    response = connection.post do |req|
+      req.url "users/#{user.name}/playlists"
+      req.headers['Authorization'] = "Bearer #{user.access_token}"
+      req.headers['Content-Type'] = 'application/json'
+      req.body = "{\"name\":\"#{playlist_name}\",\"public\":false}"
     end
-    events_hashes = parse(response)[:setlists][:setlist]
-    events_hashes.map do |event_hash|
-      Setlist.new(event_hash)
-    end
+    parse(response)
   end
 
   private
@@ -23,7 +21,3 @@ class SpotifyService
     JSON.parse(response.body, symbolize_names: true)
   end
 end
-
-## run `rails runner app/services/setlist_service.rb` to see response in JSON ##
-# SetlistService.new.artist_events("Pearl Jam")
-# SetlistService.new.get_event("5bfccf3c")

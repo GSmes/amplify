@@ -13,6 +13,7 @@
             <strong><%= index + 1 %>.</strong> <%= song %><br>
           <% end %></p>
         </div>
+        <%= button_to 'Create Playlist', {:controller => "playlists", :action => "create", :playlist_name => "#{setlist.artist}_#{setlist.date}_#{setlist.venue}"}  %>
       <% end %>
     </div>
   <% end %>
