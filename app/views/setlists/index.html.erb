@@ -1,4 +1,7 @@
 <div class="container">
+  <center>
+    <p><br /><%= link_to '<< Back to Search', search_path %></p>
+  </center>
   <% @setlists.each do |setlist| %>
     <div class="well col-md-8 col-md-offset-2">
       <center>
@@ -9,11 +12,15 @@
       </center>
       <% unless setlist.songs.blank? %>
         <div class="well col-md-8 col-md-offset-2">
-          <p><% setlist.songs.each_with_index do |song, index| %>
-            <strong><%= index + 1 %>.</strong> <%= song %><br>
-          <% end %></p>
+          <p>
+            <% setlist.songs.each_with_index do |song, index| %>
+              <strong><%= index + 1 %>.</strong> <%= song %><br>
+            <% end %>
+          </p>
+          <center>
+            <%= button_to 'Create Playlist', {:controller=>"playlists", :action=>"create", :playlist_name=>"#{setlist.artist} at #{setlist.venue} (#{setlist.date})", :artist=>setlist.artist, :songs=>setlist.songs}  %>
+          </center>
         </div>
-        <%= button_to 'Create Playlist', {:controller => "playlists", :action => "create", :playlist_name => "#{setlist.artist}_#{setlist.date}_#{setlist.venue}"}  %>
       <% end %>
     </div>
   <% end %>
