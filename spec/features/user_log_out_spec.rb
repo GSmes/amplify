@@ -3,20 +3,20 @@ require 'rails_helper'
 RSpec.feature 'User logging out' do
   context 'logged in user' do
     scenario 'they try to log out' do
-      stub_omniauth
+      log_in_user
 
-      visit root_path
-
-      click_link "Log in with Spotify"
-
-      expect(page).to have_content("Welcome, Garrett.smestad!")
-
-      click_link "Log out"
+      within('#topnavbar') do
+        click_link "Logout"
+      end
 
       expect(page.status_code).to eq(200)
-      expect(page).to have_content("Log in with Spotify")
       expect(page).to_not have_content("Welcome, Garrett.smestad!")
-      expect(page).to_not have_content("Log out")
+
+      within('#topnavbar') do
+        expect(page).to have_link("Login with Spotify")
+        expect(page).to_not have_content("Logged in as Garrett.smestad")
+        expect(page).to_not have_content("Logout")
+      end
     end
   end
 end

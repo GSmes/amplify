@@ -42,6 +42,16 @@ def stub_omniauth
     "extra"=>{}
   })
 end
+
+def log_in_user
+  stub_omniauth
+
+  visit root_path
+
+  within('#topnavbar') do
+    click_link "Login with Spotify"
+  end
+end
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
