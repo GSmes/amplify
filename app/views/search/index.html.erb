@@ -1,12 +1,15 @@
 <center>
   <h1><strong>Search by Artist</strong></h1>
   <div class="well col-md-4 col-md-offset-4">
-    <form action="<%= setlists_path %>" method="get">
-      <p>
-        <%= text_field_tag :artistName, params[:artistName], placeholder: "Artist Name" %>
-        <%= submit_tag "Find Setlists", :name => nil %>
-      </p>
+
+    <form action="<%= setlists_path %>" method="get" class="form-inline">
+      <div class="form-group">
+        <label class="sr-only" for="artist_name">Artist Name</label>
+        <input type="text" name="artist_name" class="form-control" placeholder="Artist Name">
+      </div>
+      <button type="submit" class="btn btn-default">Find Setlists</button>
     </form>
+
     <p>
       <br /><%= link_to '<< Back to Homepage', root_path %>
     </p>
