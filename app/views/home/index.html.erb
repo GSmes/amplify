@@ -11,12 +11,6 @@
     <div>
       <p><strong>Welcome, <%= current_user.name.capitalize %>!</strong></p>
       <p><strong><%= link_to "Search for a setlist", search_path %></strong></p>
-      <br><br />
-      <p><%= link_to "Log out", logout_path, method: :delete %></p>
-    </div>
-  <% else %>
-    <div>
-      <p><%= link_to "Log in with Spotify", login_path %></p>
     </div>
   <% end %>
 </center>

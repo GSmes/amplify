@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Amplify</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+    <%= render '/shared/navbar' %>
     <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %> alert-dismissible text-center" role="alert">
+      <div class="alert alert-<%= key %> alert-dismissible text-center animated shake" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <%= sanitize(value) %>
       </div>
