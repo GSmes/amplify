@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'spotify service' do
-  xdescribe '#new_playlist' do
+  describe '#new_playlist' do
     # context 'when searching by artist name' do
     #   it "should return all events by the artist" do
     #     VCR.use_cassette('setlist_service_artist_events') do

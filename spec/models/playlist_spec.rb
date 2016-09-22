@@ -1,5 +1,10 @@
-require 'rails_helper'
-
-RSpec.describe Setlist, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+# require 'rails_helper'
+#
+# RSpec.describe Playlist, type: :model do
+#   it 'creates an empty playlist' do
+#     user = log_in_user
+#     binding.pry
+#
+#     playlist = Playlist.new()
+#   end
+# end
