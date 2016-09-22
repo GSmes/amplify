@@ -17,8 +17,10 @@ class Setlist
   def self.find_all(artist_name)
     events = service.artist_events(artist_name)
 
-    events.map do |event|
-      Setlist.new(event)
+    if events.blank?
+      "We could not find the band or artist you were looking for. Please try another search."
+    else
+      events.map { |event| Setlist.new(event) }
     end
   end
 
