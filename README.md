@@ -2,6 +2,8 @@
 [![Code Climate](https://codeclimate.com/github/GSmes/amplify/badges/gpa.svg)](https://codeclimate.com/github/GSmes/amplify)
 [![Issue Count](https://codeclimate.com/github/GSmes/amplify/badges/issue_count.svg)](https://codeclimate.com/github/GSmes/amplify)
 
+[Production Website](https://amplifyit.herokuapp.com/)
+
 ---
 
 ## Overview
