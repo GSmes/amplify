@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get '/search', to: 'search#index'
   get '/setlists', to: 'setlists#index'
   post '/playlists', to: 'playlists#create'
+
+  get '*unmatched_route', to: 'application#not_found', as: 'route_error'
 end
