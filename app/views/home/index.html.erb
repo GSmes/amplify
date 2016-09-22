@@ -1,16 +1,18 @@
-<center>
-  <div class="page-header">
-    <h1>Amplify</h1>
-  </div>
-
-  <div class="well">
-    Amplify automatically generates a Spotify playlist based on a band or artist's previous show(s).
-  </div>
-
-  <% if current_user %>
-    <div>
-      <p><strong>Welcome, <%= current_user.name.capitalize %>!</strong></p>
-      <p><strong><%= link_to "Search for a setlist", search_path %></strong></p>
+<div class="well center" id="homepage">
+  <center>
+    <div id="header">
+      <h1><strong><em>Amplify</em></strong></h1>
     </div>
-  <% end %>
-</center>
+
+    <div class="well" id="dark-bg">
+      Amplify automatically generates a Spotify playlist based on a band or artist's previous show(s).
+    </div>
+
+    <% if current_user %>
+      <div class="well col-md-6 col-md-offset-3" id="dark-bg">
+        <p><strong>Welcome, <%= current_user.name.capitalize %>!</strong></p>
+        <p><strong><%= link_to "Search for a setlist", search_path %></strong></p>
+      </divc>
+    <% end %>
+  </center>
+</div>
