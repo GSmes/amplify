@@ -51,8 +51,6 @@ class Setlist
   def get_songs
     songs = SetlistParser.new(event_hash).songs_array
 
-    songs.map do |song|
-      song[:@name]
-    end
+    songs.map { |song| song[:@name] }
   end
 end
