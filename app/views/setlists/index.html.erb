@@ -23,19 +23,23 @@
           <h5><strong>Date: </strong><%= setlist.date %></h5>
         </center>
 
-        <% unless setlist.songs.blank? %>
-          <div class="well col-md-8 col-md-offset-2">
+        <div class="well col-md-8 col-md-offset-2">
+          <% unless setlist.songs.blank? %>
             <p>
               <% setlist.songs.each_with_index do |song, index| %>
                 <strong><%= index + 1 %>.</strong> <%= song %><br>
               <% end %>
             </p>
             <center>
-              <%= button_to 'Create Playlist', {:controller=>"playlists", :action=>"create", :playlist_name=>"#{setlist.artist} at #{setlist.venue} (#{setlist.date})", :artist=>setlist.artist, :songs=>setlist.songs}  %>
+              <%= button_to 'Create Playlist', {:controller=>'playlists', :action=>'create', :playlist_name=>"#{setlist.artist} at #{setlist.venue} (#{setlist.date})", :artist=>setlist.artist, :songs=>setlist.songs}, class: 'btn btn-sm btn-primary shadow' %>
             </center>
-          </div>
+        <% else %>
+          <center class="text-warning">
+            Setlist coming soon!
+          </center>
         <% end %>
-        
+      </div>
+
       </div>
     <% end %>
 
