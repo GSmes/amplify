@@ -8,7 +8,7 @@ class SetlistService
       req.url 'search/setlists.json'
       req.params['artistName'] = artist_name
     end
-    parse(response)[:setlists][:setlist]
+    parse(response)[:setlists][:setlist] unless response.body == "not found\n"
   end
 
   private
