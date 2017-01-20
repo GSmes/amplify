@@ -6,13 +6,6 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
-require 'vcr'
-
-VCR.configure do |config|
-  config.cassette_library_dir = "spec/vcr_cassettes"
-  config.hook_into :webmock
-  config.allow_http_connections_when_no_cassette = true
-end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -21,37 +14,6 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-def stub_omniauth
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:spotify] = OmniAuth::AuthHash.new({
-    "provider"=>"spotify",
-    "uid"=>"garrett.smestad",
-    "info"=>
-      {"name"=>"garrett.smestad",
-       "nickname"=>"garrett.smestad",
-       "email"=>"garrett.smestad@gmail.com",
-       "urls"=>{"spotify"=>"https://open.spotify.com/user/garrett.smestad"},
-       "image"=>nil},
-    "credentials"=>
-      {"token"=>
-        "BQDvvWIIA5Ii_X_-gNjfc4fZenyb4a6oKId5a3wzvuRsD95TTmK4YQI3iWa1td7gJQeIMuMTj7Bn5UYwUs9I4cndF4ic4tecZPsz9S29XHTmUm-6LGv10X4DXMINDtMMeQ482CiVinoL4hwPQY9x5hXeyLsriSxGdaqhq6J2ijxxvHC-wZJRlmNHG_bKfw6gS0lMNOahqJrt3iDOUpC5o0fRCT1INIruJKnFsrqVbYKoXNHGcJO8d_V-ohIDKHLF-lqGfsz5pLkawK-ILg",
-       "refresh_token"=>
-        "AQD-yxnaDzQt3ajhTbadMBNGV46CcCw5cegRK8hq7RtXt2sUJhrPStMwQcibvd8bnlcQpc5vvwH4DZU8IcEgHZ7AG40xU1ReJxR5Ho-q3MQlstz7swq_Pfcz5teqxTn7OeI",
-         "expires_at"=>1474262148,
-         "expires"=>true},
-    "extra"=>{}
-  })
-end
-
-def log_in_user
-  stub_omniauth
-
-  visit root_path
-
-  within('#topnavbar') do
-    click_link "Login with Spotify"
-  end
-end
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
